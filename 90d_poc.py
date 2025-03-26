@@ -14,7 +14,7 @@ credential = ClientSecretCredential(tenant_id, client_id, client_secret)
 query = """
 AuditLogs
 | where OperationName == "Invite external user"
-| extend inviteTime = TimeGenerated-90d
+| extend inviteTime = TimeGenerated
 | extend daysSinceInvite = datetime_diff("day", now(), inviteTime)
 | where daysSinceInvite == 90
 | extend upn = tostring(TargetResources[0].id)
